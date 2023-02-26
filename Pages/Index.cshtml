@@ -1,0 +1,58 @@
+﻿@page
+
+@model IndexModel
+
+<div class="text-center">
+    <h1>Check if machine learning thinks your email is spam!</h1>
+    <br />
+
+    <form method="post">
+
+            <div class="form-group row">
+
+                    <div class="col-md-2">Email Subject: </div>
+
+                    <div class="col-md-10">
+                        <textarea 
+                            class="form-control" 
+                            rows="1" 
+                            id="emailSubject" 
+                            name="emailSubject" 
+                            cols="40" 
+                            maxlength="100" 
+                            autocorrect="on"
+                            placeholder="Type your email subject here."></textarea>
+                    </div>
+            </div>
+
+            <br />
+
+            <div class="form-group row">
+
+                    <div class="col-md-2">Email Body: </div>
+
+                    <div class="col-md-10">
+                        <textarea 
+                            class="form-control" 
+                            rows="15" 
+                            id="emailBody" 
+                            name="emailBody" 
+                            cols="40" 
+                            maxlength="5000" 
+                            autocorrect="on"
+                            placeholder="Type your email body here."></textarea>
+                    </div>
+            </div>
+
+        <div><input type="submit" /></div>
+
+    </form>
+
+    <br />
+
+    @if (TempData.ContainsKey("predictionResult"))
+    {
+         <h4 id="result">Your email is predicted to be @TempData["predictionResult"].ToString() with a confidence of @TempData["predictionConfidence"].ToString()%</h4>
+    }
+
+</div>

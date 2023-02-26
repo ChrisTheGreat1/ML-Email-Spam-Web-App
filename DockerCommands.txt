@@ -1,0 +1,11 @@
+docker build -t email-spam-web-app-image -f Dockerfile .
+
+docker images
+docker ps -a
+
+//To run locally: docker run --publish 8000:80 email-spam-web-app-image
+docker create --name email-spam-web-app email-spam-web-app-image // 6617b3918be420bf72b1af95a13d
+
+docker commit 6617b3918be420 conkythegreat/email-spam-web-app-repo
+
+// then in Docker desktop, right click and "push to hub"
