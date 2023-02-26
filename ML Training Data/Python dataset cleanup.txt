@@ -1,0 +1,26 @@
+data=pd.read_csv('C:\\Users\\chris\\Documents\\Programming\\Javascript\\5 TFJS Email Spam Detection\\ML Modelling\\EmailDataset_Unclean.csv', encoding = "ISO-8859-1")
+
+data = data.drop_duplicates()
+
+data[data.Body == "empty"] # Returns rows 12626,14513
+
+data.drop([12626,14513], axis=0, inplace=True) 
+
+def cleanText(text):
+    whitespace = re.compile(r"\s+")
+    web_address = re.compile(r"(?i)http(s):\/\/[a-z0-9.~_\-\/]+")
+    user = re.compile(r"(?i)@[a-z0-9_]+")
+    text = text.replace('.', '')
+    text = whitespace.sub(' ', text)
+    text = web_address.sub('', text)
+    text = user.sub('', text)
+    text = re.sub(r"\[[^()]*\]", "", text)
+    text = re.sub(r"\d+", "", text)
+    text = re.sub(r"\_+", "", text)
+    text = re.sub(r'[^\w\s]','',text)
+    text = re.sub(r"(?:@\S*|#\S*|http(?=.*://)\S*)", "", text)
+    return text.lower()
+
+data.Body = [cleanText(item) for item in data.Body]
+
+data.to_csv("EmailDataset.csv", encoding='utf-8', index=False)
