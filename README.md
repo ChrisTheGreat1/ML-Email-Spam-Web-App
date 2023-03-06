@@ -1,4 +1,4 @@
-# ML-Email-Spam-Web-App
+# ML Email Spam Web App
 
 This is a simple web app created with ASP.NET Core Razor pages that uses a machine learning model to predict if the posted email contents are spam. 
 
